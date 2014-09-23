@@ -1,8 +1,8 @@
 # go-endpoint
 #
 
-hello:
-	go run hello.go
+console:
+	go run console.go
 
 server:
 	go run server.go
