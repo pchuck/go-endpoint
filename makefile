@@ -7,6 +7,9 @@ console:
 server:
 	go run server.go
 
+tour:
+	go run tour.go
+
 client:
 	curl localhost:4000/time
 
