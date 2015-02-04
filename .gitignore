@@ -24,4 +24,4 @@ _testmain.go
 *.prof
 
 *~
-src/github.com/
+

@@ -1,1 +1,3 @@
-export GOPATH=~/dev/pchuck/go-endpoint
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
