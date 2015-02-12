@@ -3,6 +3,7 @@
 
 LEARN=src/github.com/pchuck/learn
 ENDPOINT=src/github.com/pchuck/endpoint
+DBHOST=localhost:27017
 
 console:
 	go run console.go
@@ -28,6 +29,16 @@ client-gin-concurrent:
 
 curl-gin:
 	curl localhost:8081/v0/read 
+
+get-mgo:
+	go get gopkg.in/mgo.v2
+
+start-mdb:
+	mongod --dbpath ~/.mdb-db &
+
+client-mdb:
+	go run $(ENDPOINT)/client-mdb.go localhost:27017 test people
+
 
 # misc
 tour:
