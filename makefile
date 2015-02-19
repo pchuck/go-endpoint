@@ -5,38 +5,40 @@ LEARN=src/github.com/pchuck/learn
 ENDPOINT=src/github.com/pchuck/endpoint
 DBHOST=localhost:27017
 
-console:
-	go run console.go
+# tmux a complete dev environment
+create_env:
+	scripts/go-endp-tmux.sh work go-endp
 
 # gin server
-get-gin:
+get_gin:
 	go get github.com/gin-gonic/gin
 
-run-server-gin:
-	go run $(ENDPOINT)/server-gin.go
-
-build-server-gin:
+build_server_gin:
 	go build $(ENDPOINT)/server-gin.go
 
-install-server-gin:
+install_server_gin:
 	go install $(ENDPOINT)/server-gin.go
 
-client-gin:
+run_server_gin:
+	go run $(ENDPOINT)/server-gin.go
+
+client_gin:
 	go run $(ENDPOINT)/client-gin.go http://localhost:8081/v0/read
 
-client-gin-concurrent:
+client_gin_concurrent:
 	go run $(ENDPOINT)/client-gin-concurrent.go http://localhost:8081/v0/read 100
 
-curl-gin:
+curl_gin:
 	curl localhost:8081/v0/read 
 
-get-mgo:
+# mongodb
+get_mgo:
 	go get gopkg.in/mgo.v2
 
-start-mdb:
+start_mdb:
 	mongod --dbpath ~/.mdb-db &
 
-client-mdb:
+client_mdb:
 	go run $(ENDPOINT)/client-mdb.go localhost:27017 test people
 
 
@@ -47,12 +49,15 @@ tour:
 concurrency:
 	go run $(LEARN)/goroutines.go
 
+console:
+	go run $(LEARN)/console.go
+
 # simple server
-server:
+simple_server:
 	go run $(LEARN)/server.go
 
-client:
+simple_client:
 	curl localhost:4000/time
 
-client_error:
+simple_client_error:
 	curl localhost:4000
