@@ -30,7 +30,7 @@ tmux split-window -v -t $SESSION:$WINDOW -d 'pwd ; bash -i'
 tmux split-window -v -t $SESSION:$WINDOW.1 -d 'pwd ; bash -i'
 
 # start the server and issue a command in the client console
-tmux send-keys -t $SESSION:$WINDOW.2 'make run-server-gin' 'C-m'
+tmux send-keys -t $SESSION:$WINDOW.2 'make run_server_gin' 'C-m'
 tmux send-keys -t $SESSION:$WINDOW.1 'ls' 'C-m'
 
 # attach to the session
