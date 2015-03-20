@@ -2,7 +2,9 @@
 # 
 # tmux script to initialize go dev environment 
 #
-
+# deprecated
+#   use tmuxinator instead. see: 'make create_env'
+#
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 session_name window" >&2
   echo "  e.g. $0 work go-endp" >&2

@@ -7,7 +7,8 @@ DBHOST=localhost:27017
 
 # tmux a complete dev environment
 create_env:
-	scripts/go-endp-tmux.sh work go-endp
+#	scripts/go-endp-tmux.sh work go-endp
+	tmuxinator start go-endpoint
 
 # gin server
 get_gin:
