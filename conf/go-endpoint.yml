@@ -23,7 +23,7 @@ root: .
 startup_window: editor
 
 windows:
-  - editor:
+  - dev:
       layout: main-vertical
       panes:
         - emacs src/github.com/pchuck/endpoint/server-gin.go
