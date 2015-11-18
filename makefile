@@ -4,33 +4,37 @@
 LEARN=src/github.com/pchuck/learn
 ENDPOINT=src/github.com/pchuck/endpoint
 DBHOST=localhost:27017
+PORT=8081
 
-# tmux a complete dev environment
+## environment
 create_env:
-#	scripts/go-endp-tmux.sh work go-endp
 	tmuxinator start go-endpoint
 
-# gin server
+
+## local development/deployment
+
+# go/gin server
 get_gin:
 	go get github.com/gin-gonic/gin
 
-build_server_gin:
+build_server_gin: # creates server-gin
 	go build $(ENDPOINT)/server-gin.go
 
-install_server_gin:
+install_server_gin: # installs in bin/
 	go install $(ENDPOINT)/server-gin.go
 
 run_server_gin:
 	go run $(ENDPOINT)/server-gin.go
 
+# go clients
 client_gin:
-	go run $(ENDPOINT)/client-gin.go http://localhost:8081/v0/read
+	go run $(ENDPOINT)/client-gin.go http://localhost:$(PORT)/v0/read
 
 client_gin_concurrent:
-	go run $(ENDPOINT)/client-gin-concurrent.go http://localhost:8081/v0/read 100
+	go run $(ENDPOINT)/client-gin-concurrent.go http://localhost:$(PORT)/v0/read 100
 
 curl_gin:
-	curl localhost:8081/v0/read 
+	curl localhost:$(PORT)/v0/read 
 
 # mongodb
 get_mgo:
@@ -62,3 +66,52 @@ simple_client:
 
 simple_client_error:
 	curl localhost:4000
+
+
+## remote vagrant deployment
+
+VAGRANT_PROVIDER=virtualbox
+
+# add a box
+add_centos:
+	vagrant box add centos/7 --provider=$(VAGRANT_PROVIDER)
+
+# update boxes
+update_boxes:
+	vagrant box update 
+
+# list available boxes
+list:
+	vagrant box list
+
+# virtualbox extension updater
+vbguest:
+	vagrant plugin install vagrant-vbguest
+
+# initialize a vagrant environment
+init:
+	vagrant init
+
+# start all instances
+up:
+	vagrant up
+
+# show machine states
+status:
+	vagrant status
+
+# restart/update the web instance
+# !!! broken in multimachine?
+reload:
+	vagrant reload --provision
+
+# connect to instances by name
+ssh_web:
+	vagrant ssh web
+
+ssh_console:
+	vagrant ssh console
+
+# also see: halt, suspend
+destroy:
+	vagrant destroy

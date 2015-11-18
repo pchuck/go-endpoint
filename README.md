@@ -1,13 +1,26 @@
+
 go-endpoint
 ===========
 
-restful endpoint for mock datastore service, in golang
+restful endpoint for a mock service, in golang, deployed via vagrant
 
-environment
---
 
-## install go
-* https://golang.org/doc/install or http://golang.org/dl/
+## running via vagrant (microservice and client)
 ```
-curl https://storage.googleapis.com/golang/go1.3.1.darwin-amd64-osx10.8.pkg
+vagrant up
+```
+
+## running locally
+
+* install go - https://golang.org/doc/install or http://golang.org/dl/
+* set the environment and run the microservice/client
+
+```
+
+  % . scripts/go_env.sh
+
+  % make run_server_gin &
+
+  % make client_gin_concurrent
+
 ```
